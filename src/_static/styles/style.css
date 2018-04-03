@@ -8551,3 +8551,8 @@ body.md-skin {
     margin: 0;
   }
 }
+
+.pagination li.active a {
+  background: #1ab394;
+  color: #fff;
+}

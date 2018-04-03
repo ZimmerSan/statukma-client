@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Navigation extends Component {
 
@@ -35,24 +35,28 @@ class Navigation extends Component {
                     <li className={this.activeRoute("/students")}>
                         <Link to="/students"><i className="fa fa-users"></i> <span className="nav-label">Students</span></Link>
                     </li>
-                    <li className={this.activeRoute("/dashboard")}>
-                        <Link to="/dashboard"><i className="fa fa-th-large"/> <span
-                            className="nav-label">Dashboard</span> <span className="fa arrow"/></Link>
-                        <ul className="nav nav-second-level collapse">
-                            <li className={this.activeRoute("/dashboard/orders")}>
-                                <Link to="/dashboard/orders">Orders</Link>
-                            </li>
-                            <li className={this.activeRoute("/dashboard/projects")}>
-                                <Link to="/dashboard/projects">Projects</Link>
-                            </li>
-                        </ul>
+                    <li className={this.activeRoute("/specialities")}>
+                        <Link to="/specialities"><i className="fa fa-graduation-cap"></i> <span className="nav-label">Specialities</span></Link>
                     </li>
-                    <li className={this.activeRoute("/siteTemplates")}>
-                        <Link to="/siteTemplates"><i className="fa fa-desktop"></i> <span className="nav-label">Site Templates</span></Link>
+                    <li className={this.activeRoute("/faculties")}>
+                        <Link to="/faculties"><i className="fa fa-desktop"></i> <span className="nav-label">Faculties</span></Link>
                     </li>
-                    <li className={this.activeRoute("/cart")}>
-                        <Link to="/cart"><i className="fa fa-shopping-cart"></i> <span className="nav-label">Cart</span></Link>
-                    </li>
+                    {/*<li className={this.activeRoute("/dashboard")}>*/}
+                        {/*<Link to="/dashboard"><i className="fa fa-th-large"/> <span*/}
+                            {/*className="nav-label">Dashboard</span> <span className="fa arrow"/></Link>*/}
+                        {/*<ul className="nav nav-second-level collapse">*/}
+                            {/*<li className={this.activeRoute("/dashboard/orders")}>*/}
+                                {/*<Link to="/dashboard/orders">Orders</Link>*/}
+                            {/*</li>*/}
+                            {/*<li className={this.activeRoute("/dashboard/projects")}>*/}
+                                {/*<Link to="/dashboard/projects">Projects</Link>*/}
+                            {/*</li>*/}
+                        {/*</ul>*/}
+                    {/*</li>*/}
+
+                    {/*<li className={this.activeRoute("/cart")}>*/}
+                        {/*<Link to="/cart"><i className="fa fa-shopping-cart"></i> <span className="nav-label">Cart</span></Link>*/}
+                    {/*</li>*/}
                 </ul>
             </nav>
         )

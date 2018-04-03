@@ -5,6 +5,7 @@ import registerServiceWorker from './registerServiceWorker';
 import jquery from 'jquery';
 import metismenu from 'metismenu';
 
+import './../node_modules/font-awesome/css/font-awesome.css'
 import './_static/styles/style.css';
 import './_static/styles/animate.css';
 

@@ -8,6 +8,9 @@ import { correctHeight, detectBody } from './Helpers';
 import {Redirect, Route, Switch} from "react-router-dom";
 
 import StudentsView from '../views/StudentsView';
+import SpecialitiesView from "../views/SpecialitiesView";
+import FacultiesView from "../views/FacultiesView";
+import FacultyView from "../views/FacultyView";
 
 class MainLayout extends React.Component {
 
@@ -22,8 +25,12 @@ class MainLayout extends React.Component {
                     <TopHeader/>
 
                     <Switch>
-                        <Route exact path="/" render={() => (<Redirect to="/students"/>)} />
+                        <Route exact path="/" render={() => (<Redirect to="/students"/>)}/>
                         <Route exact path="/students" component={StudentsView}/>
+                        <Route exact path="/specialities" component={SpecialitiesView}/>
+                        {/*<Route exact path="/specialities/:id" render={() => (<Redirect to="/"/>)}/>*/}
+                        <Route exact path="/faculties" component={FacultiesView}/>
+                        <Route exact path="/faculties/:id" component={FacultyView}/>
                     </Switch>
 
                     <Footer />

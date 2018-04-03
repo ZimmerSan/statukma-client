@@ -8,7 +8,6 @@ import IboxTools from "../common/IboxTools";
 import { Link } from 'react-router-dom';
 import {facultyService} from "../../_services/faculty.service";
 import {specialityService} from "../../_services/speciality.service";
-import EntitiesCount from "../partials/EntitiesCount";
 
 const ELEMENTS_PER_PAGE = 20;
 const initialState = {
@@ -19,10 +18,9 @@ const initialState = {
     },
     data: [],
     facultyFilters: [],
-    specialityFilters: [],
 };
 
-class StudentsView extends Component {
+class SpecialitiesView extends Component {
 
     constructor(props) {
         super(props);
@@ -35,10 +33,6 @@ class StudentsView extends Component {
             .then(res => self.setState({
                 facultyFilters: res
             }));
-        specialityService.findSearchCriteria()
-            .then(res => self.setState({
-                specialityFilters: res
-            }));
         this.load();
     }
 
@@ -46,10 +40,8 @@ class StudentsView extends Component {
         let filter = {
             name: this.state.nameFilter,
             facultyId: this.state.facultyFilter,
-            specialityId: this.state.specialityFilter,
-            course: this.state.courseFilter,
         };
-        loadFilteredData(this, studentService, ELEMENTS_PER_PAGE, filter);
+        loadFilteredData(this, specialityService, ELEMENTS_PER_PAGE, filter);
     };
 
     changeFilter = (e) => {
@@ -59,43 +51,28 @@ class StudentsView extends Component {
     };
 
     render() {
-        let {data: students} = this.state;
-        const {page, facultyFilters, specialityFilters} = this.state;
+        let {data: specialities} = this.state;
+        const {page, facultyFilters} = this.state;
 
         let breadCrumbsElements = [
-            {link: '/students', name: 'Students'},
+            {link: '/specialities', name: 'Specialities'},
         ];
-        let breadCrumbs = <BreadCrumbs pageTitle={'Students'} elements={breadCrumbsElements} buttons={<EntitiesCount count={page.totalElements}/>}/>;
+        let breadCrumbs = <BreadCrumbs pageTitle={'Specialities'} elements={breadCrumbsElements} buttons={<strong>Found {page.totalElements} entities...</strong>}/>;
 
         return [
             breadCrumbs,
             <Row>
-                <Col lg={12}>
+                <Col lg={8}>
                     <div className="wrapper wrapper-content animated fadeInRight">
                         <div className="ibox-content m-b-sm border-bottom">
                             <div className="row">
-                                <div className="col-sm-4">
+                                <Col lg={8}>
                                     <div className="form-group">
                                         <label className="control-label" htmlFor="nameFilter">Name</label>
                                         <input type="text" id="nameFilter" name="nameFilter" value={this.state.nameFilter} onChange={this.changeFilter} placeholder="Name" className="form-control"/>
                                     </div>
-                                </div>
-                                <div className="col-sm-2">
-                                    <div className="form-group">
-                                        <label className="control-label" htmlFor="courseFilter">Course</label>
-                                        <input type="text" id="courseFilter" name="courseFilter" value={this.state.courseFilter} onChange={this.changeFilter} placeholder="course" className="form-control"/>
-                                    </div>
-                                </div>
-                                <div className="col-sm-2">
-                                    <div className="form-group">
-                                        <label className="control-label" htmlFor="specialityFilter">Speciality</label>
-                                        <select name="specialityFilter" id="specialityFilter" className="form-control" onChange={this.changeFilter}>
-                                            <option selected="" key="all" value={''}>All</option>
-                                            {specialityFilters.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="col-sm-4">
+                                </Col>
+                                <Col lg={4}>
                                     <div className="form-group">
                                         <label className="control-label" htmlFor="facultyFilter">Faculty</label>
                                         <select name="facultyFilter" id="facultyFilter" className="form-control" onChange={this.changeFilter}>
@@ -103,7 +80,7 @@ class StudentsView extends Component {
                                             {facultyFilters.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
                                         </select>
                                     </div>
-                                </div>
+                                </Col>
                             </div>
 
                         </div>
@@ -116,16 +93,12 @@ class StudentsView extends Component {
                                             <thead>
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Course</th>
-                                                <th>Speciality</th>
                                                 <th>Faculty</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            {students.map(s => <tr>
-                                                <td>{s.name}</td>
-                                                <td>{s.yearOfStudy}</td>
-                                                <td><Link to={"/specialities/" + s.specId}>{s.specName}</Link></td>
+                                            {specialities.map(s => <tr>
+                                                <td><Link to={"/specialities/" + s.id}>{s.name}</Link></td>
                                                 <td><Link to={"/faculties/" + s.facId}>{s.facName}</Link></td>
                                                 </tr>)}
                                             </tbody>
@@ -153,4 +126,4 @@ class StudentsView extends Component {
     }
 }
 
-export default StudentsView;
+export default SpecialitiesView;
