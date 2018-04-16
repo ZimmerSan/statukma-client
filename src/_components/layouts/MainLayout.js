@@ -11,6 +11,8 @@ import StudentsView from '../views/StudentsView';
 import SpecialitiesView from "../views/SpecialitiesView";
 import FacultiesView from "../views/FacultiesView";
 import FacultyView from "../views/FacultyView";
+import DisciplinesView from "../views/DisciplinesView";
+import StudentView from "../views/StudentView";
 
 class MainLayout extends React.Component {
 
@@ -27,10 +29,13 @@ class MainLayout extends React.Component {
                     <Switch>
                         <Route exact path="/" render={() => (<Redirect to="/students"/>)}/>
                         <Route exact path="/students" component={StudentsView}/>
+                        <Route exact path="/students/:id" component={StudentView}/>
                         <Route exact path="/specialities" component={SpecialitiesView}/>
-                        {/*<Route exact path="/specialities/:id" render={() => (<Redirect to="/"/>)}/>*/}
+                        <Route exact path="/specialities/:id" render={() => (<Redirect to="/specialities"/>)}/>
                         <Route exact path="/faculties" component={FacultiesView}/>
                         <Route exact path="/faculties/:id" component={FacultyView}/>
+                        <Route exact path="/disciplines" component={DisciplinesView}/>
+                        <Route exact path="/disciplines/:id" render={() => (<Redirect to="/disciplines"/>)}/>
                     </Switch>
 
                     <Footer />

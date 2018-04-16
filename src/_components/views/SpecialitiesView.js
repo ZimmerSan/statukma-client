@@ -8,6 +8,7 @@ import IboxTools from "../common/IboxTools";
 import { Link } from 'react-router-dom';
 import {facultyService} from "../../_services/faculty.service";
 import {specialityService} from "../../_services/speciality.service";
+import EntitiesCount from "../partials/EntitiesCount";
 
 const ELEMENTS_PER_PAGE = 20;
 const initialState = {
@@ -57,12 +58,12 @@ class SpecialitiesView extends Component {
         let breadCrumbsElements = [
             {link: '/specialities', name: 'Specialities'},
         ];
-        let breadCrumbs = <BreadCrumbs pageTitle={'Specialities'} elements={breadCrumbsElements} buttons={<strong>Found {page.totalElements} entities...</strong>}/>;
+        let breadCrumbs = <BreadCrumbs pageTitle={'Specialities'} elements={breadCrumbsElements} buttons={<EntitiesCount count={page.totalElements}/>}/>;
 
         return [
             breadCrumbs,
             <Row>
-                <Col lg={8}>
+                <Col lg={12}>
                     <div className="wrapper wrapper-content animated fadeInRight">
                         <div className="ibox-content m-b-sm border-bottom">
                             <div className="row">

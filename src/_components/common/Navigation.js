@@ -41,6 +41,9 @@ class Navigation extends Component {
                     <li className={this.activeRoute("/faculties")}>
                         <Link to="/faculties"><i className="fa fa-desktop"></i> <span className="nav-label">Faculties</span></Link>
                     </li>
+                    <li className={this.activeRoute("/disciplines")}>
+                        <Link to="/disciplines"><i className="fa fa-bars"></i> <span className="nav-label">Disciplines</span></Link>
+                    </li>
                     {/*<li className={this.activeRoute("/dashboard")}>*/}
                         {/*<Link to="/dashboard"><i className="fa fa-th-large"/> <span*/}
                             {/*className="nav-label">Dashboard</span> <span className="fa arrow"/></Link>*/}

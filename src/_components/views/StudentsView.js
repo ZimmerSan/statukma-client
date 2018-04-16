@@ -123,7 +123,7 @@ class StudentsView extends Component {
                                             </thead>
                                             <tbody>
                                             {students.map(s => <tr>
-                                                <td>{s.name}</td>
+                                                <td><Link to={`/students/${s.id}`}>{s.name}</Link></td>
                                                 <td>{s.yearOfStudy}</td>
                                                 <td><Link to={"/specialities/" + s.specId}>{s.specName}</Link></td>
                                                 <td><Link to={"/faculties/" + s.facId}>{s.facName}</Link></td>

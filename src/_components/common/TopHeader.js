@@ -60,10 +60,7 @@ class TopHeader extends React.Component {
                             <span className="m-r-sm text-muted welcome-message">Welcome to StatUKMA — Statistics of NaUKMA courses...</span>
                         </li>
                         <li>
-                            {loggedIn
-                                ? <Link to='/login'><i className="fa fa-sign-out"></i> Log Out</Link>
-                                : <Link to='/login'><i className="fa fa-sign-in"></i> Log in</Link>
-                            }
+                            <Link to='/students/46327'><i className="fa fa-sign-out"></i> Author</Link>
                         </li>
                     </ul>
                 </nav>
