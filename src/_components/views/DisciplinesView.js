@@ -133,7 +133,7 @@ class DisciplinesView extends Component {
 
         return <div className="p-lg text-center animated fadeIn">
             <div className="m-b-md">
-                <h3 className="font-bold no-margins">Students by Years</h3>
+                <h3 className="font-bold no-margins">Students by Faculties</h3>
                 <br/>
                 <Bar
                     data={data}
@@ -171,7 +171,7 @@ class DisciplinesView extends Component {
 
         return <div className="p-lg text-center animated fadeIn">
             <div className="m-b-md">
-                <h3 className="font-bold no-margins">Students by Faculties</h3>
+                <h3 className="font-bold no-margins">Students by Year Enrolled</h3>
                 <br/>
                 <Line
                     data={data}

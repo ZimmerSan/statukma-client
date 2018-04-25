@@ -91,14 +91,6 @@ class FacultiesView extends Component {
         this.setState({selectedFaculties: []});
     };
 
-    studentsWidget = selFaculties => {
-        if (selFaculties.length === 1) {
-            return this.studentsWidgetSingle(selFaculties[0]);
-        } else if (selFaculties.length > 1) {
-            return this.studentsWidgetMultiple(selFaculties);
-        }
-    };
-
     studentsWidgetMultiple = () => {
         const courses = [1, 2, 3, 4];
         const data = {
@@ -165,23 +157,12 @@ class FacultiesView extends Component {
             </div>
     };
 
-    studentsWidgetSingle = fac => {
+    studentLevelWidget = level => {
         const data = {
-            labels: Object.keys(fac.studentsByCourses),
+            labels: this.state.selectedFaculties.map(f => f.name),
             datasets: [{
-                data: Object.values(fac.studentsByCourses),
-                backgroundColor: [
-                    '#FF6384',
-                    '#36A2EB',
-                    '#FFCE56',
-                    '#fff'
-                ],
-                hoverBackgroundColor: [
-                    '#FF6384',
-                    '#36A2EB',
-                    '#FFCE56',
-                    '#fff'
-                ]
+                data: this.state.selectedFaculties.map((f => f.students.filter(s => s.level === level).length)),
+                backgroundColor: this.state.selectedFaculties.map((f, i) => colors[i] + '1)'),
             }],
 
         };
@@ -189,17 +170,12 @@ class FacultiesView extends Component {
         const options = {
             legend: {
                 position: 'bottom',
-                labels: {
-                    fontColor: '#fff'
-                }
             }
         };
 
-        return <div className="widget lazur-bg p-lg text-center animated fadeIn">
+        return <div className="p-lg text-center animated fadeIn">
             <div className="m-b-md">
-                <h3 className="font-bold no-margins">Students by courses</h3>
-                <small>{fac.studentsCount} total</small>
-                <br/>
+                <h3 className="font-bold no-margins">{level === 'BACHELOR' ? 'Bachelors' : 'Masters'} by faculties</h3>
                 <br/>
                 <Doughnut data={data} options={options}/>
             </div>
@@ -275,12 +251,14 @@ class FacultiesView extends Component {
                                                         <tr>
                                                             <th></th>
                                                             <th>Name</th>
+                                                            <th>Students <span className="label label-info">{this.state.selectedFaculties.map(f => f.studentsCount).reduce((a, b) => a + b, 0)}</span></th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        {this.state.selectedFaculties.map(s => <tr className="animated fadeInRight">
-                                                            <td>{this.createCheckbox(s.id)}</td>
-                                                            <td><Link to={`/faculties/${s.id}`}>{s.name}</Link></td>
+                                                        {this.state.selectedFaculties.map(f => <tr className="animated fadeInRight">
+                                                            <td>{this.createCheckbox(f.id)}</td>
+                                                            <td><Link to={`/faculties/${f.id}`}>{f.name}</Link></td>
+                                                            <td>{f.studentsCount}</td>
                                                         </tr>)
                                                         }
                                                         </tbody>
@@ -298,8 +276,11 @@ class FacultiesView extends Component {
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col lg={12}>
-                                                {/*{this.state.selectedDisciplines.length > 0 && this.statByRegType()}*/}
+                                            <Col lg={6}>
+                                                {this.state.selectedFaculties.length > 0 && this.studentLevelWidget('BACHELOR')}
+                                            </Col>
+                                            <Col lg={6}>
+                                                {this.state.selectedFaculties.length > 0 && this.studentLevelWidget('MASTER')}
                                             </Col>
                                         </Row>
                                     </div>

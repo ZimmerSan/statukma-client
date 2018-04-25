@@ -95,12 +95,14 @@ class SpecialitiesView extends Component {
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Faculty</th>
+                                                <th>Students</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             {specialities.map(s => <tr>
                                                 <td><Link to={"/specialities/" + s.id}>{s.name}</Link></td>
                                                 <td><Link to={"/faculties/" + s.facId}>{s.facName}</Link></td>
+                                                <td>{s.studentsCount}</td>
                                                 </tr>)}
                                             </tbody>
                                             <tfoot>
